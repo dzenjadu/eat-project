@@ -31,7 +31,18 @@ export default {
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
+    '@nuxtjs/style-resources',
   ],
+
+  styleResources: {
+    // your settings here
+    sass: [],
+    scss: [
+        '~/styles/mixins.scss',
+    ],
+    less: [],
+    stylus: []
+  },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [

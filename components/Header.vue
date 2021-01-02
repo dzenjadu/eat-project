@@ -16,7 +16,7 @@
 <style lang="scss">
 	.header {
 		&__logo {
-			/*height: em(62);*/
+			height: em(62);
 		}
 	}
 </style>
