@@ -1,13 +1,21 @@
 <template>
-	<div class="sidebar">
-		<h2>Категории</h2>
-		<div v-for="(category, index) in categories">
-			<input type="checkbox" :id="index" :value="category" v-model="checkedCategories">
-			<label :for="index">{{ category }}</label>
+	<div class="d-categories">
+		<h2 class="d-categories__title">Категории</h2>
+
+		<div class="d-categories__block">
+			<div v-for="(category, index) in categories">
+				<input v-model="checkedCategories"
+					   :id="index"
+					   :value="category"
+					   type="checkbox"
+					   class="d-categories__item"
+				>
+				<label :for="index" class="d-categories__label">{{ category }}</label>
+			</div>
 		</div>
 
-		<button @click="setCategories">показать</button>
-		<button v-if="isDishesByCategories" @click="resetResult">сбросить</button>
+		<button @click="setCategories" class="d-categories__btn">показать</button>
+		<button v-if="isDishesByCategories" @click="resetResult" class="d-categories__btn">сбросить</button>
 	</div>
 </template>
 
@@ -82,6 +90,28 @@
     }
 </script>
 
-<!--<style scoped>-->
+<style lang="scss">
+	.d-categories {
+		&__title {
 
-<!--</style>-->
+		}
+
+		&__block {
+			border: 1px solid $c-border;
+			border-radius: em(6);
+			box-shadow: $box-shadow;
+		}
+
+		&__item {
+
+		}
+
+		&__label {
+
+		}
+
+		&__btn {
+
+		}
+	}
+</style>

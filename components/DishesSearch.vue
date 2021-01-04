@@ -1,7 +1,11 @@
 <template>
 	<form @submit.prevent="searchItems" class="search">
 		<h2>Поиск по блюдам</h2>
-		<input v-model="inputValue" type="text" placeholder="Введите название" class="search__input" />
+		<input v-model="inputValue"
+			   type="text"
+			   placeholder="Введите название"
+			   class="search__input"
+		/>
 		<button class="search__btn">Найти</button>
 		<div v-if="errorMessage" class="search__message message-error">{{ errorMessage }}</div>
 	</form>

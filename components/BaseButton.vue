@@ -2,7 +2,7 @@
 	<NuxtLink v-if="to" :to="to" class="button">
 		<slot></slot>
 	</NuxtLink>
-	<button v-else class="button">
+	<button v-else class="button" @click="onClick">
 		<slot></slot>
 	</button>
 </template>
@@ -15,6 +15,10 @@
                 type: String,
                 default: () => '',
             },
+			onClick: {
+                type: Function,
+                default: () => {},
+			}
         }
     }
 </script>

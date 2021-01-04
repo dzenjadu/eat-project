@@ -20,6 +20,7 @@ export default {
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
+    '~/styles/main.scss',
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
@@ -35,13 +36,10 @@ export default {
   ],
 
   styleResources: {
-    // your settings here
-    sass: [],
     scss: [
-        '~/styles/mixins.scss',
+        '~/styles/helpers/mixins.scss',
+        '~/styles/helpers/variables.scss',
     ],
-    less: [],
-    stylus: []
   },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -54,6 +52,5 @@ export default {
   axios: {},
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {
-  }
+  build: {}
 }

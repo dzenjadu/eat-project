@@ -1,10 +1,12 @@
 <template>
-	<div>
+	<main class="main">
 		<Header/>
 		<Nuxt/>
-	</div>
+	</main>
 </template>
 
-<style>
-
+<style lang="scss">
+	.main {
+		padding-top: em(60);
+	}
 </style>
