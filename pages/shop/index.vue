@@ -18,18 +18,8 @@
 </template>
 
 <script>
-    import {mapActions} from 'vuex'
-
     export default {
         name: "shop",
-        created() {
-            this.getAllDishes()
-        },
-        methods: {
-            ...mapActions({
-                getAllDishes: 'dishes/getAllDishes'
-            })
-        }
     }
 </script>
 

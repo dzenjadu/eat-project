@@ -1,7 +1,7 @@
 <template>
 	<div class="buy-panel">
-		<BaseButton :on-click="addToCart">В корзину</BaseButton>
-		<Counter />
+		<BaseButton :on-click="handleClickCartBtn">В корзину</BaseButton>
+		<Counter v-if="showCounter" :dishName="dishName" />
 	</div>
 </template>
 
@@ -11,36 +11,63 @@
     export default {
         name: "DishesListBuyPanel",
         props: {
-            nameItem: {
+            dishName: {
                 type: String,
                 default: () => null,
             },
         },
+		data() {
+            return {
+                dishInCart: null,
+                showCounter: false,
+			}
+		},
 		computed: {
             ...mapGetters({
                 allDishes: 'dishes/allDishes',
                 cartList: 'cart/cartList',
             }),
 		},
-		methods: {
+		watch: {
+            cartList() {
+                this.setShowCounter()
+			}
+		},
+		mounted() {
+            if (Object.keys(this.cartList).length) {
+                this.setShowCounter()
+            }
+        },
+        methods: {
             ...mapMutations({
                 setCartList: 'cart/setCartList',
             }),
-            addToCart() {
-                const findItem = Object.entries(this.allDishes).filter(([item, value]) => item === this.nameItem)
+			setShowCounter() {
+                Object.entries(this.cartList).forEach(([item, value]) => {
 
+				})
+			},
+			handleClickCartBtn() {
+                this.addToCart()
+			},
+            addToCart() {
+                const findItem = Object.entries(this.allDishes).filter(([item, value]) => item === this.dishName)
                 const itemToCart = Object.fromEntries(findItem)
 
-                if (this.cartList[this.nameItem]) {
-                    itemToCart[this.nameItem]['count'] += 1;
+                if (this.cartList[this.dishName]) {
+                    itemToCart[this.dishName]['count'] += 1;
 				} else {
-                    itemToCart[this.nameItem]['count'] = 1;
+                    itemToCart[this.dishName]['count'] = 1;
 				}
 
-				this.setCartList(Object.assign(itemToCart, this.cartList))
+                const cartListMerged = Object.assign(itemToCart, this.cartList)
+
+				this.setCartList(cartListMerged)
+                localStorage.setItem('cartList', JSON.stringify(cartListMerged));
 
 				console.log('cartList', this.cartList)
 			},
+
 		},
     }
 </script>

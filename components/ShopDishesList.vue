@@ -8,7 +8,7 @@
 <script>
     import {mapGetters, mapMutations} from 'vuex'
 
-	const LOADING_STEP_ITEMS = 9
+	const LOADING_STEP_ITEMS = 15
 
     export default {
         name: "ShopDishesList",
@@ -60,6 +60,11 @@
                     this.resetData(this.dishesByCategories, this.setDishesByCategories)
                     this.resetItems()
 				}
+            }
+        },
+		mounted() {
+            if (Object.keys(this.allDishes).length) {
+                this.getCurrentItems()
             }
         },
         methods: {

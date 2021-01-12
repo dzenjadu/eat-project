@@ -4,6 +4,7 @@ export const state = () => ({
     dishesBySearch: {},
     needResetCheckbox: false,
     lastSearchValue: null,
+    currentDish: {},
 })
 
 export const mutations = {
@@ -22,6 +23,9 @@ export const mutations = {
     setLastSearchValue: (state, lastSearchValue) => {
         state.lastSearchValue = lastSearchValue
     },
+    setCurrentDish: (state, currentDish) => {
+        state.currentDish = currentDish
+    },
 }
 
 export const getters = {
@@ -31,6 +35,7 @@ export const getters = {
     dishesBySearch: (state) => state.dishesBySearch,
     needResetCheckbox: (state) => state.needResetCheckbox,
     lastSearchValue: (state) => state.lastSearchValue,
+    currentDish: (state) => state.currentDish,
 }
 
 export const actions = {

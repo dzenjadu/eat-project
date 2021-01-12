@@ -1,13 +1,14 @@
 <template>
-	<div class="dishes">
+	<div class="dishes" ref="dishes">
 		<div v-for="(item, name) in items" :key="name" class="dishes__item">
-			<img :src="require(`~/assets/dishes/${name}.jpg`)"
+			<img @click="showDishPopup(name, item)"
+				 :src="require(`~/assets/dishes/${name}.jpg`)"
 				 :alt="item.title"
 				 class="dishes__img"
 			>
 
 			<div class="dishes__block">
-				<h3 class="dishes__title">{{ item.title }} - {{item.category}}</h3>
+				<h3 @click="openDishPage(item.id)" class="dishes__title">{{ item.title }} - {{item.category}}</h3>
 
 				<div class="dishes__row">
 					<div class="dishes__cell">кКал: {{item.calories}}</div>
@@ -22,12 +23,14 @@
 				</div>
 			</div>
 
-			<DishesListBuyPanel v-if="buyPanel" :name-item="name" />
+			<DishesListBuyPanel v-if="buyPanel" :dish-name="name" />
 		</div>
 	</div>
 </template>
 
 <script>
+    import {mapMutations} from 'vuex'
+
     export default {
         name: "DishesList",
 		props: {
@@ -39,6 +42,29 @@
                 type: Boolean,
                 default: () => false,
 			}
+		},
+		computed: {
+
+		},
+		methods: {
+            ...mapMutations({
+                setCurrentDish: 'dishes/setCurrentDish',
+            }),
+            openDishPage(id) {
+                this.$router.push(`/shop/${id}`)
+			},
+            showDishPopup(dishName, dishData) {
+                import('./DishPopup').then(component => {
+                    this.$modal.show(component.default, {
+                        dishName: dishName,
+						dishData: dishData,
+					}, {
+                        height: 'auto',
+                        classes: 'popup dish__popup',
+                    });
+                });
+			},
+
 		},
     }
 </script>
@@ -58,6 +84,7 @@
 
 		&__img {
 			width: 100%;
+			cursor: pointer;
 		}
 	}
 </style>

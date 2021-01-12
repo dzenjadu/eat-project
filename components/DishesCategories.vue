@@ -57,7 +57,9 @@
             },
 		},
 		mounted() {
-
+            if (Object.keys(this.allDishes).length) {
+                this.getCategories()
+            }
         },
         methods: {
             ...mapMutations({
