@@ -9,12 +9,12 @@ export const MAIN_CATEGORIES = {
         title: 'Конструктор питания',
         desc: 'Индивидуальный рацион с просчетом КБЖУ. Большой выбор блюд.',
         textBtn: 'Собрать',
-        link: '/constructor',
+        link: '/rations',
     },
     weeks_rations: {
         title: 'Рационы на неделю',
         desc: 'Готовая еда - сбалансированное меню. ПП рационы на неделю.',
         textBtn: 'Заказать',
-        link: '/weeksrations',
+        link: '/rations',
     },
 }

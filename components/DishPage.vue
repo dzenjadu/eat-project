@@ -21,6 +21,8 @@
 				</div>
 
 				<p class="dish-page__desc">{{dishData.desc}}</p>
+
+				<DishesListBuyPanel :dish-name="dishName" />
 			</div>
 		</div>
 	</div>

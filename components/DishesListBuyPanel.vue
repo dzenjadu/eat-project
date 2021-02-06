@@ -1,7 +1,7 @@
 <template>
 	<div class="buy-panel">
-		<BaseButton :on-click="handleClickCartBtn">В корзину</BaseButton>
 		<Counter v-if="showCounter" :dishName="dishName" />
+		<BaseButton v-else :on-click="addToCart">В корзину</BaseButton>
 	</div>
 </template>
 
@@ -19,7 +19,6 @@
 		data() {
             return {
                 dishInCart: null,
-                showCounter: false,
 			}
 		},
 		computed: {
@@ -27,47 +26,36 @@
                 allDishes: 'dishes/allDishes',
                 cartList: 'cart/cartList',
             }),
+            showCounter() {
+                return Object.keys(this.cartList).some((item) => item === this.dishName)
+            },
 		},
 		watch: {
-            cartList() {
-                this.setShowCounter()
-			}
+
 		},
 		mounted() {
-            if (Object.keys(this.cartList).length) {
-                this.setShowCounter()
-            }
+
         },
         methods: {
             ...mapMutations({
                 setCartList: 'cart/setCartList',
             }),
-			setShowCounter() {
-                Object.entries(this.cartList).forEach(([item, value]) => {
-
-				})
-			},
-			handleClickCartBtn() {
-                this.addToCart()
-			},
-            addToCart() {
+            addToCart()  {
                 const findItem = Object.entries(this.allDishes).filter(([item, value]) => item === this.dishName)
                 const itemToCart = Object.fromEntries(findItem)
 
                 if (this.cartList[this.dishName]) {
                     itemToCart[this.dishName]['count'] += 1;
-				} else {
+                } else {
                     itemToCart[this.dishName]['count'] = 1;
-				}
+                }
 
-                const cartListMerged = Object.assign(itemToCart, this.cartList)
-
-				this.setCartList(cartListMerged)
-                localStorage.setItem('cartList', JSON.stringify(cartListMerged));
-
-				console.log('cartList', this.cartList)
-			},
-
+                this.writeCartToStore(Object.assign(itemToCart, this.cartList))
+            },
+            writeCartToStore(cartListMerged) {
+                this.setCartList(cartListMerged)
+                localStorage.setItem('cartList', JSON.stringify(cartListMerged))
+            }
 		},
     }
 </script>

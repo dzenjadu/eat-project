@@ -7,8 +7,7 @@
 
 <script>
     import {mapGetters, mapMutations} from 'vuex'
-
-	const LOADING_STEP_ITEMS = 15
+    import config from '~/config/index.js'
 
     export default {
         name: "ShopDishesList",
@@ -62,8 +61,10 @@
 				}
             }
         },
-		mounted() {
+        mounted() {
             if (Object.keys(this.allDishes).length) {
+                this.setDishesBySearch({})
+                this.setDishesByCategories({})
                 this.getCurrentItems()
             }
         },
@@ -85,8 +86,8 @@
             getCurrentItems() {
 				let items = this.currentItems
 
-                const currentItems = Object.keys(this.dishesList).splice(this.loadedItems, LOADING_STEP_ITEMS)
-                this.loadedItems += LOADING_STEP_ITEMS
+                const currentItems = Object.keys(this.dishesList).splice(this.loadedItems, config.LOADING_STEP_ITEMS)
+                this.loadedItems += config.LOADING_STEP_ITEMS
 
                 currentItems.forEach((item) => {
                     items = {

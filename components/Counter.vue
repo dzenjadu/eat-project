@@ -1,13 +1,14 @@
 <template>
 	<div class="counter">
 		<button @click="subCount">-</button>
-		<div>{{ count }}</div>
+		<div>{{ dishCount }}</div>
 		<button @click="addCount">+</button>
-		dishName - {{dishName}}
 	</div>
 </template>
 
 <script>
+    import {mapGetters, mapMutations} from 'vuex'
+
     export default {
         name: "Counter",
         props: {
@@ -21,14 +22,37 @@
                 count: 1,
 			}
 		},
+        computed: {
+            ...mapGetters({
+                cartList: 'cart/cartList',
+            }),
+			dishCount() {
+                return this.cartList[this.dishName].count
+			}
+        },
 		methods: {
+            ...mapMutations({
+                setCartList: 'cart/setCartList',
+            }),
             addCount() {
-                this.count += 1;
+                let cartList = {...this.cartList}
+                cartList[this.dishName].count += 1
+
+				this.setCartList(cartList)
+                localStorage.setItem('cartList', JSON.stringify(cartList))
+
 			},
             subCount() {
-                if (this.count > 1) {
-                    this.count -= 1;
-                }
+                let cartList = {...this.cartList}
+
+                if (cartList[this.dishName].count > 1) {
+                    cartList[this.dishName].count -= 1
+                } else {
+                    delete cartList[this.dishName] 
+				}
+
+                this.setCartList(cartList)
+                localStorage.setItem('cartList', JSON.stringify(cartList))
 			},
 		}
     }

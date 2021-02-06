@@ -28,7 +28,12 @@
                 lastSearchValue: 'dishes/lastSearchValue',
             }),
 		},
-		methods: {
+		mounted() {
+            if (this.lastSearchValue) {
+                this.setLastSearchValue(null)
+            }
+        },
+        methods: {
             ...mapMutations({
                 setDishesBySearch: 'dishes/setDishesBySearch',
                 setNeedResetCheckbox: 'dishes/setNeedResetCheckbox',
