@@ -35,24 +35,30 @@
                 setCartList: 'cart/setCartList',
             }),
             addCount() {
-                let cartList = {...this.cartList}
-                cartList[this.dishName].count += 1
+                let dishData = {...this.cartList[this.dishName]}
+                dishData.count += 1;
 
-				this.setCartList(cartList)
-                localStorage.setItem('cartList', JSON.stringify(cartList))
+				const newDishData = {...this.cartList, [this.dishName]: {...dishData}}
+
+				this.setCartList(newDishData)
+                localStorage.setItem('cartList', JSON.stringify(newDishData))
 
 			},
             subCount() {
-                let cartList = {...this.cartList}
+                let dishData = {...this.cartList[this.dishName]}
+                let newDishData = {}
 
-                if (cartList[this.dishName].count > 1) {
-                    cartList[this.dishName].count -= 1
+                if (dishData.count > 1) {
+                    dishData.count -= 1
+                    newDishData = {...this.cartList, [this.dishName]: {...dishData}}
                 } else {
-                    delete cartList[this.dishName] 
+                    let cartList = {...this.cartList}
+                    delete cartList[this.dishName]
+                    newDishData = {...cartList}
 				}
 
-                this.setCartList(cartList)
-                localStorage.setItem('cartList', JSON.stringify(cartList))
+                this.setCartList(newDishData)
+                localStorage.setItem('cartList', JSON.stringify(newDishData))
 			},
 		}
     }

@@ -16,7 +16,7 @@
 				</div>
 
 				<div class="dish-page__row">
-					<div class="dish-page__price">{{dishData.priсe}} &#8381;</div>
+					<div class="dish-page__price">{{dishData.price}} &#8381;</div>
 					<div class="dish-page__width">{{dishData.width}}г.</div>
 				</div>
 

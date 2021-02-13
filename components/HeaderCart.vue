@@ -1,15 +1,31 @@
 <template>
 	<div class="header-cart">
-		header-cart
+		<button @click="toggleCartPopup" class="header-cart__btn">cart</button>
+		<CartPopup v-if="showCartPopup" :hideCartPopup='hideCartPopup' />
 	</div>
 </template>
 
 <script>
     export default {
-        name: "HeaderCart"
+        name: "HeaderCart",
+        data() {
+            return {
+                showCartPopup: false,
+            }
+        },
+        methods: {
+            toggleCartPopup() {
+                this.showCartPopup = !this.showCartPopup
+            },
+            hideCartPopup() {
+                this.showCartPopup = false
+            },
+        },
     }
 </script>
 
-<!--<style scoped>-->
-
-<!--</style>-->
+<style lang="scss">
+	.header-cart {
+		position: relative;
+	}
+</style>

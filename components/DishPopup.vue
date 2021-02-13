@@ -17,7 +17,7 @@
 				</div>
 
 				<div class="dishes__row">
-					<div class="dishes__price">{{dishData.priсe}} &#8381;</div>
+					<div class="dishes__price">{{dishData.price}} &#8381;</div>
 					<div class="dishes__width">{{dishData.width}}г.</div>
 				</div>
 

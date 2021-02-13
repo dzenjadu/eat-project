@@ -8,9 +8,8 @@
 			<MainMenu/>
 
 			<div class="header__panel">
-				<div class="header-login">login</div>
-				<div class="header-cart">cart</div>
-				<div class="burger">burger</div>
+				<button class="header-login">login</button>
+				<HeaderCart />
 			</div>
 		</div>
 	</header>
