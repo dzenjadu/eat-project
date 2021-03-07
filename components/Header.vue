@@ -1,15 +1,14 @@
 <template>
 	<header class="header">
 		<div class="container">
-			<NuxtLink to="/" class="header__link">
-				<img src="~/assets/logo.svg" alt="Главная" class="header__logo">
-			</NuxtLink>
+			<div class="header__wrapper">
+				<NuxtLink to="/" class="header__link">
+					<img src="~/assets/logo.svg" alt="Главная" class="header__logo">
+				</NuxtLink>
 
-			<MainMenu/>
-
-			<div class="header__panel">
-				<button class="header-login">login</button>
-				<HeaderCart />
+				<div class="header__panel">
+					<HeaderCart />
+				</div>
 			</div>
 		</div>
 	</header>
@@ -30,6 +29,7 @@
 		background: #fff;
 		min-height: em(45);
 		display: flex;
+		z-index: 1;
 
 		&__link	{
 			position: absolute;
@@ -45,13 +45,17 @@
 			display: flex;
 		}
 
-		.container {
+		&__wrapper {
 			display: flex;
-			justify-content: space-between;
+			justify-content: flex-end;
 			align-items: center;
 			position: relative;
 			padding: em(10) 0 em(10) em(90);
 			box-sizing: border-box;
+			width: 100%;
+		}
+
+		.container {
 			width: 100%;
 		}
 	}

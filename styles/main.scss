@@ -3,13 +3,49 @@
 @import "./helpers/mixins";
 @import "./helpers/variables";
 
+html,
+body,
+#__nuxt,
+#__layout {
+  height: 100%;
+}
+
 body {
   font-size: 16px;
   margin: 0;
   font-family: 'Roboto', sans-serif;
+  background-color: $bg-main;
 }
 
 .container {
   margin: 0 auto;
   max-width: em(1170);
+  padding: 0 em(20);
+}
+
+.button {
+  background-color: $c-green;
+  border: none;
+  color: #fff;
+  border-radius: em(6);
+  padding: em(10) em(20);
+  cursor: pointer;
+  width: 100%;
+  transition: background-color .2s, color .2s;
+
+  &:hover {
+    background-color: lighten($c-green, 8%);
+  }
+
+  &_red {
+    background-color: #d0515c;
+
+    &:hover {
+      background-color: lighten(#d0515c, 8%);
+    }
+  }
+}
+
+button, a, input {
+  outline: none;
 }

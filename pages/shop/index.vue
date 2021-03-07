@@ -1,7 +1,7 @@
 <template>
 	<div class="shop">
 		<div class="container">
-			<h1 class="shop__title">Интернет магазин готовых блюд правильного питания.</h1>
+			<h1 class="shop__title">Интернет магазин</h1>
 
 			<div class="shop__wrapper">
 				<div class="shop__sidebar">
@@ -27,12 +27,17 @@
 	.shop {
 		&__title {
 			text-align: center;
+			margin-bottom: em(20);
 		}
 
 		&__sidebar {
 			width: em(265);
 			flex: 0 0 auto;
-			margin-right: em(30);
+			margin: 0 em(30) em(30) 0;
+
+			@media screen and (max-width: 880px) {
+				width: 100%;
+			}
 		}
 
 		&__main {
@@ -40,8 +45,13 @@
 		}
 
 		&__wrapper {
+			position: relative;
 			display: flex;
 			justify-content: space-between;
+
+			@media screen and (max-width: 880px) {
+				display: block;
+			}
 		}
 
 		.container {

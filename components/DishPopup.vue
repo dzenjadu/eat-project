@@ -1,6 +1,6 @@
 <template>
 	<div class="dish-popup">
-		<div @click="$emit('close')" class="dish-popup__close">Закрыть</div>
+		<button @click="$emit('close')" class="dish-popup__close">x</button>
 
 		<div class="dish-popup__wrapper">
 			<img :src="require(`~/assets/dishes/${dishName}.jpg`)"
@@ -10,18 +10,18 @@
 				<h3 class="dishes__title">{{ dishData.title }}</h3>
 
 				<div class="dishes__row">
-					<div class="dishes__cell">кКал: {{dishData.calories}}</div>
-					<div class="dishes__cell">Белки: {{dishData.proteins}}</div>
-					<div class="dishes__cell">Жиры: {{dishData.fats}}</div>
-					<div class="dishes__cell">Углев: {{dishData.carbo}}</div>
+					<div class="dishes__cell">кКал: {{ dishData.calories }}</div>
+					<div class="dishes__cell">Белки: {{ dishData.proteins }}</div>
+					<div class="dishes__cell">Жиры: {{ dishData.fats }}</div>
+					<div class="dishes__cell">Углев: {{ dishData.carbo }}</div>
 				</div>
 
 				<div class="dishes__row">
-					<div class="dishes__price">{{dishData.price}} &#8381;</div>
-					<div class="dishes__width">{{dishData.width}}г.</div>
+					<div class="dishes__price">{{ dishData.price }} &#8381;</div>
+					<div class="dishes__width">{{ dishData.width }}г.</div>
 				</div>
 
-				<p class="dishes__desc">{{dishData.desc}}</p>
+				<p class="dishes__desc">{{ dishData.desc }}</p>
 
 				<DishesListBuyPanel :dish-name="dishName" />
 			</div>
@@ -47,6 +47,20 @@
 
 <style lang="scss">
 	.dish-popup {
+		position: relative;
 
+		&__close {
+			border: none;
+			background: none;
+			position: absolute;
+			right: 0;
+			top: 0;
+			cursor: pointer;
+			font-size: 20px;
+		}
+
+		&__wrapper {
+			display: flex;
+		}
 	}
 </style>

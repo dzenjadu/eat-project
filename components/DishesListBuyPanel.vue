@@ -1,7 +1,7 @@
 <template>
-	<div class="buy-panel">
+	<div :class="theme" class="buy-panel">
 		<Counter v-if="showCounter" :dishName="dishName" />
-		<BaseButton v-else :on-click="addToCart">В корзину</BaseButton>
+		<button v-else @click="addToCart" class="button">В корзину</button>
 	</div>
 </template>
 
@@ -14,6 +14,10 @@
             dishName: {
                 type: String,
                 default: () => null,
+            },
+            theme: {
+                type: String,
+                default: () => '',
             },
         },
 		data() {
@@ -62,6 +66,19 @@
 
 <style lang="scss">
 	.buy-panel {
+		&.big {
+			.counter {
+				&__btn,
+				&__count {
+					height: 30px;
+					min-width: 30px;
+				}
 
+				&__btn {
+					border: 1px solid #d0d0d0;
+					border-radius: em(6);
+				}
+			}
+		}
 	}
 </style>

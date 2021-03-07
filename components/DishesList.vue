@@ -1,35 +1,36 @@
 <template>
 	<div class="dishes" ref="dishes">
 		<div v-for="(item, name) in items" :key="name" class="dishes__item">
-			<img @click="showDishPopup(name, item)"
-				 :src="require(`~/assets/dishes/${name}.jpg`)"
-				 :alt="item.title"
-				 class="dishes__img"
-			>
+			<div class="dishes__wrapper">
+				<img @click="showDishPopup(name, item)"
+					 :src="require(`~/assets/dishes/${name}.jpg`)"
+					 :alt="item.title"
+					 class="dishes__img"
+				>
 
-			<div class="dishes__block">
-				<h3 @click="openDishPage(item.id)" class="dishes__title">{{ item.title }} - {{item.category}}</h3>
+				<div class="dishes__block">
+					<h3 @click="openDishPage(item.id)" class="dishes__title">{{ item.title }}</h3>
 
-				<div class="dishes__row">
-					<div class="dishes__cell">кКал: {{item.calories}}</div>
-					<div class="dishes__cell">Белки: {{item.proteins}}</div>
-					<div class="dishes__cell">Жиры: {{item.fats}}</div>
-					<div class="dishes__cell">Углев: {{item.carbo}}</div>
-				</div>
+					<DishesDetails :dish="item" />
 
-				<div class="dishes__row">
-					<div class="dishes__price">{{item.price}} &#8381;</div>
-					<div class="dishes__width">{{item.width}}г.</div>
+					<div class="dishes__row dishes__row_center">
+						<div class="dishes__price">{{ item.price }} &#8381;</div>
+						<div class="dishes__width">
+							<div class="dishes__name">Порция:</div>
+							<div class="dishes__num">{{ item.width }}г.</div>
+						</div>
+					</div>
+
+					<DishesListBuyPanel v-if="buyPanel" :dish-name="name" :theme="THEME_BIG" />
 				</div>
 			</div>
-
-			<DishesListBuyPanel v-if="buyPanel" :dish-name="name" />
 		</div>
 	</div>
 </template>
 
 <script>
     import {mapMutations} from 'vuex'
+    import config from '~/config/index.js'
 
     export default {
         name: "DishesList",
@@ -43,8 +44,10 @@
                 default: () => false,
 			}
 		},
-		computed: {
-
+		data() {
+			return {
+                THEME_BIG: config.THEME_BIG
+			}
 		},
 		methods: {
             ...mapMutations({
@@ -73,18 +76,81 @@
 	.dishes {
 		display: flex;
 		flex-wrap: wrap;
+		margin: 0 em(-10);
 
 		&__item {
-			width: 31%;
+			width: 33.333%;
+			padding: 0 em(10);
+			box-sizing: border-box;
+			margin-bottom: em(20);
 
-			&:not(:nth-child(3n+3)) {
-				margin-right: em(20);
+			@media screen and (max-width: 1024px) {
+				width: 50%;
 			}
+
+			@media screen and (max-width: 540px) {
+				width: 100%;
+			}
+		}
+
+		&__wrapper {
+			background-color: $c-white;
+			overflow: hidden;
+			border-radius: em(6);
+			box-shadow: $box-shadow;
+		}
+
+		&__block {
+			padding: em(10) em(20) em(20);
+		}
+
+		&__title {
+			margin: 0 0 em(15);
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			color: #2D8D51;
+			font-weight: 400;
+			font-size: em(16);
+			text-decoration: underline;
+			cursor: pointer;
 		}
 
 		&__img {
 			width: 100%;
 			cursor: pointer;
 		}
+
+		&__row {
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-start;
+			text-align: center;
+			margin-bottom: em(20);
+
+			&_center {
+				align-items: center;
+			}
+		}
+
+		&__price {
+			font-weight: bold;
+			font-size: em(28);
+		}
+
+		&__width {
+			display: flex;
+			align-items: center;
+
+			.dishes__name {
+				margin: 0 em(10) 0 0;
+			}
+		}
+
+		.buy-panel {
+			display: flex;
+			justify-content: center;
+		}
+
 	}
 </style>

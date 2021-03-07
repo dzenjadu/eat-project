@@ -1,7 +1,9 @@
 <template>
 	<div class="shop-dishes">
 		<DishesList :items="currentItems" :buy-panel="true"/>
-		<button v-if="!loadedAllItems" @click="getCurrentItems">Еще</button>
+		<div class="shop-dishes__more">
+			<button v-if="!loadedAllItems" @click="getCurrentItems" class="button shop-dishes__btn">Еще</button>
+		</div>
 	</div>
 </template>
 
@@ -42,11 +44,9 @@
         },
         watch: {
             allDishes() {
-                console.log(111)
                 this.getCurrentItems()
 			},
             dishesByCategories(newValue) {
-                console.log(222)
                 if (Object.keys(newValue).length) {
                     this.resetData(this.dishesBySearch, this.setDishesBySearch)
                 }
@@ -55,7 +55,6 @@
 			},
             dishesBySearch(newValue) {
 				if (Object.keys(newValue).length) {
-                    console.log(333)
                     this.resetData(this.dishesByCategories, this.setDishesByCategories)
                     this.resetItems()
 				}
@@ -103,5 +102,15 @@
 </script>
 
 <style lang="scss">
+	.shop-dishes {
+		&__more {
+			display: flex;
+			justify-content: center;
+			margin: em(30) 0;
+		}
 
+		&__btn {
+			width: em(100);
+		}
+	}
 </style>

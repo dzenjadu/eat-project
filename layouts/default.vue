@@ -1,7 +1,10 @@
 <template>
 	<main class="main">
 		<Header/>
-		<Nuxt/>
+		<div class="content">
+			<Nuxt/>
+		</div>
+		<Footer/>
 	</main>
 </template>
 
@@ -35,5 +38,13 @@
 <style lang="scss">
 	.main {
 		padding-top: em(60);
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+	}
+
+	.content {
+		flex: 1 0 auto;
 	}
 </style>

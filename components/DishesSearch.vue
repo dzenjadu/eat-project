@@ -1,12 +1,17 @@
 <template>
 	<form @submit.prevent="searchItems" class="search">
-		<h2>Поиск по блюдам</h2>
-		<input v-model="inputValue"
-			   type="text"
-			   placeholder="Введите название"
-			   class="search__input"
-		/>
-		<button class="search__btn">Найти</button>
+		<h2 class="search__title">Поиск по блюдам</h2>
+		<div class="search__wrapper">
+			<input v-model="inputValue"
+				   type="text"
+				   placeholder="Введите название"
+				   class="search__input"
+			/>
+			<button class="search__btn">
+				<img src="~/assets/search.svg" class="search__img">
+			</button>
+		</div>
+
 		<div v-if="errorMessage" class="search__message message-error">{{ errorMessage }}</div>
 	</form>
 </template>
@@ -66,6 +71,30 @@
     }
 </script>
 
-<!--<style scoped>-->
+<style lang="scss">
+	.search {
+		&__wrapper {
+			display: flex;
+		}
 
-<!--</style>-->
+		&__title {
+			margin-top: 0;
+		}
+
+		&__input {
+			border: 1px solid $c-border;
+			border-radius: em(6) 0 0 em(6);
+			box-sizing: border-box;
+			padding: em(15);
+			width: 100%;
+		}
+
+		&__btn {
+			border: 1px solid $c-border;
+			border-radius: 0 em(6) em(6) 0;
+			background-color: $c-border;
+			width: em(55);
+			cursor: pointer;
+		}
+	}
+</style>
