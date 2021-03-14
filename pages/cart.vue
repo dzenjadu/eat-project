@@ -1,6 +1,7 @@
 <template>
-	<div class="cart">
+	<div class="cart-page">
 		<div class="container">
+			<h2 class="cart-page__title">Корзина</h2>
 			<CartList />
 		</div>
 	</div>
@@ -19,6 +20,10 @@
     }
 </script>
 
-<style>
-
+<style lang="scss">
+	.cart-page {
+		&__title {
+			text-align: center;
+		}
+	}
 </style>

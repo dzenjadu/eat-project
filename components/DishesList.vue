@@ -2,7 +2,8 @@
 	<div class="dishes" ref="dishes">
 		<div v-for="(item, name) in items" :key="name" class="dishes__item">
 			<div class="dishes__wrapper">
-				<img @click="showDishPopup(name, item)"
+<!--				showDishPopup(name, item)-->
+				<img @click="openDishPage(item.id)"
 					 :src="require(`~/assets/dishes/${name}.jpg`)"
 					 :alt="item.title"
 					 class="dishes__img"
@@ -62,6 +63,7 @@
                         dishName: dishName,
 						dishData: dishData,
 					}, {
+
                         height: 'auto',
                         classes: 'popup dish__popup',
                     });

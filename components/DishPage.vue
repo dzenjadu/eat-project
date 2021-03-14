@@ -23,8 +23,7 @@
 				</div>
 			</div>
 
-<!--			сделать похожие товары-->
-<!--			<DishesList :items="currentItems" :buy-panel="true"/>-->
+			<DishesList :items="currentItems" :buy-panel="true"/>
 		</div>
 	</div>
 </template>
@@ -57,18 +56,33 @@
 		watch: {
             allDishes() {
                 this.getCurrentDish()
+                this.getCurrentItems()
 			},
 		},
 		mounted() {
             if (Object.keys(this.allDishes).length) {
                 this.getCurrentDish()
+                this.getCurrentItems()
             }
+
+            setTimeout(() => {
+                console.log(this.dishData)
+
+			}, 2000)
         },
         methods: {
             getCurrentDish() {
                 const [currentDish] = Object.entries(this.allDishes).filter(([item, value]) => value.id == this.dishId)
-				this.dishName = currentDish[0];
-				this.dishData = currentDish[1];
+				this.dishName = currentDish[0]
+				this.dishData = currentDish[1]
+			},
+			getCurrentItems() {
+                const dishes = Object.entries(this.allDishes).filter(([item, value], index) => {
+                    if (value.category == this.dishData.category && value.id != this.dishId) {
+                        return true
+					}
+				})
+                this.currentItems = Object.fromEntries(dishes)
 			}
 		}
     }
