@@ -1,5 +1,5 @@
 <template>
-	<div class="cart__wrapper">
+	<div class="cart__wrapper cart-page">
 		<div class="cart__list">
 			<div v-for="(dishData, dishName) in cartList" class="cart__item">
 				<div class="cart__row cart__row_first">
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-	import CartList from "~/mixins/CartList";
+	import CartList from "~/mixins/CartList"
 
     export default {
         name: "CartList",
@@ -44,88 +44,90 @@
 </script>
 
 <style lang="scss">
-	.cart {
-		&__list {
-			@media screen and (max-width: 750px) {
-				font-size: 14px;
-			}
-		}
-
-		&__remove {
-			border: none;
-			background: none;
-			cursor: pointer;
-		}
-
-		&__item {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			border-bottom: 1px solid #ebebeb;
-			padding: em(20) 0;
-
-			&:first-child {
-				border-top: 1px solid #ebebeb;
-			}
-		}
-
-		&__row {
-			width: em(125);
-
-			&_first {
-				display: flex;
-				align-items: center;
-				flex: 1 1 auto;
-				padding-right: em(20);
-
+	.cart-page {
+		.cart {
+			&__list {
 				@media screen and (max-width: 750px) {
-					padding-right: 0;
+					font-size: 14px;
 				}
 			}
 
-			&_last {
+			&__remove {
+				border: none;
+				background: none;
+				cursor: pointer;
+			}
+
+			&__item {
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
+				border-bottom: 1px solid #ebebeb;
+				padding: em(20) 0;
+
+				&:first-child {
+					border-top: 1px solid #ebebeb;
+				}
 			}
 
-			&_calories {
+			&__row {
+				width: em(125);
+
+				&_first {
+					display: flex;
+					align-items: center;
+					flex: 1 1 auto;
+					padding-right: em(20);
+
+					@media screen and (max-width: 750px) {
+						padding-right: 0;
+					}
+				}
+
+				&_last {
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+				}
+
+				&_calories {
+					@media screen and (max-width: 750px) {
+						display: none;
+					}
+				}
+			}
+
+			&__img {
+				width: em(110);
+				margin-right: em(20);
+			}
+
+			&__info {
+
+			}
+
+			&__title {
 				@media screen and (max-width: 750px) {
 					display: none;
 				}
 			}
-		}
 
-		&__img {
-			width: em(110);
-			margin-right: em(20);
-		}
+			&__price {
 
-		&__info {
+			}
 
-		}
+			&__calories {
 
-		&__title {
-			@media screen and (max-width: 750px) {
-				display: none;
 			}
 		}
 
-		&__price {
+		.total {
+			text-align: right;
+			margin: em(20) 0;
 
-		}
-
-		&__calories {
-
-		}
-	}
-
-	.total {
-		text-align: right;
-		margin: em(20) 0;
-
-		&__row {
-			margin: em(8) 0;
+			&__row {
+				margin: em(8) 0;
+			}
 		}
 	}
 </style>

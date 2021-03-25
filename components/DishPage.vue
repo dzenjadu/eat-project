@@ -23,7 +23,7 @@
 				</div>
 			</div>
 
-			<DishesList :items="currentItems" :buy-panel="true"/>
+			<DishesListSlider :items="currentItems" :category="dishData.category" :buy-panel="true"/>
 		</div>
 	</div>
 </template>
@@ -95,9 +95,17 @@
 		&__dish {
 			display: flex;
 			align-items: flex-start;
+			margin: 0 em(45) em(40);
 
 			@media screen and (max-width: 800px) {
 				display: block;
+				margin: 0 0 em(40);
+			}
+		}
+
+		&__block {
+			@media screen and (max-width: 420px) {
+				font-size: 12px;
 			}
 		}
 
