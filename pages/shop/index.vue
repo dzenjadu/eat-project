@@ -5,8 +5,10 @@
 
 			<div class="shop__wrapper">
 				<div class="shop__sidebar">
-					<DishesSearch />
-					<DishesCategories />
+					<div :class="{'sidebar-fixed': fixed}" ref="sidebar">
+						<DishesSearch />
+						<DishesCategories />
+					</div>
 				</div>
 
 				<div class="shop__main">
@@ -20,6 +22,24 @@
 <script>
     export default {
         name: "shop",
+		data() {
+            return {
+                fixed: false
+			}
+		},
+		mounted() {
+            this.checkFixed()
+            window.addEventListener('scroll', this.checkFixed)
+        },
+		methods: {
+            checkFixed() {
+                if (window.pageYOffset > 89) {
+                    this.fixed = true
+                } else {
+                    this.fixed = false
+                }
+			}
+		}
     }
 </script>
 
@@ -56,6 +76,17 @@
 
 		.container {
 
+		}
+	}
+
+	.sidebar-fixed {
+		position: fixed;
+		top: 70px;
+		width: em(265);
+
+		@media screen and (max-width: 880px) {
+			position: static;
+			width: auto;
 		}
 	}
 </style>
