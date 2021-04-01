@@ -14,7 +14,7 @@ export const getters = {
 
 export const actions = {
     async getAllRations({commit, state}) {
-        const rations = await this.$axios.get('https://dzenjadu.github.io/data/programs.json')
+        const rations = await this.$axios.get('https://dzenjadu3.github.io/data/programs.json')
             .then(({data}) => {
                 commit('setAllRations', data)
             })

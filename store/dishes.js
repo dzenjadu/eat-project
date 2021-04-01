@@ -40,7 +40,7 @@ export const getters = {
 
 export const actions = {
     async getAllDishes({commit, state}) {
-        const dishes = await this.$axios.get('https://dzenjadu.github.io/data/dishes.json')
+        const dishes = await this.$axios.get('https://dzenjadu3.github.io/data/dishes.json')
             .then(({data}) => {
                 commit('setAllDishes', data)
             })
